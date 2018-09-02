@@ -1,18 +1,28 @@
 <div class="col-lg-12">
-  <form>
+  <form [formGroup] = "employeeForm" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-lg-6">
-      <input class="form-control" type="text" placeholder="name">
+      <input class="form-control" type="text" placeholder="id" formControlName="id">
+      <p *ngIf="employeeForm.get('id').errors  && employeeForm.dirty">Error</p>
     </div>
+
     <div class="col-lg-6">
-      <input class="form-control" type="text" placeholder="address">
+      <input class="form-control" type="text" placeholder="name" formControlName="name">
+      <p *ngIf="employeeForm.get('name').hasError && employeeForm.dirty">Error</p>
     </div>
   </div>
 
   <div class="row">
+      <div class="col-lg-6">
+          <input class="form-control" type="text" placeholder="address" formControlName="address">
+        </div>
+
     <div class="col-lg-6">
-      <input class="form-control" type="text" placeholder="mobile">
+      <input class="form-control" type="text" placeholder="mobile" formControlName="mobile">
     </div>
   </div>
+
+  <button class="btn btn-primary" type="submit">Add</button>
+  <button class="btn btn-success" (click)="reset()">Reset</button>
   </form>
 </div>

@@ -1,1 +1,19 @@
 <br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Mobile</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employeList">
+      <td>{{employee.name}}</td>
+      <td>{{employee.address}}</td>
+      <td>{{employee.mobile}}</td>
+      <td><button class="btn btn-primary" (click)="onDelete(employee.id)">Delete</button></td>
+    </tr>
+</table>
+<button (click)="refresh()"></button>

@@ -9,12 +9,26 @@ import { Employee } from '../employee.model';
 })
 export class EmployeeListComponent implements OnInit {
 
-  private employeList: Employee[];
+  employeList: Employee[];
 
-  constructor(private employeeService: EmployeeService) { }
-
-  ngOnInit() {
-    this.employeList = this.employeeService.getEmployeeList();
+  constructor(private employeeService: EmployeeService) {
+    console.log();
   }
 
+  ngOnInit() {
+    console.log('On init');
+    this.employeeService.getEmployeeUpdatedListener().subscribe((employees: Employee[]) => {
+      console.log(employees);
+      this.employeList = employees;
+    });
+    this.employeeService.getEmployeeList();
+  }
+
+  onDelete(id: number) {
+    this.employeeService.deleteEmployee(id);
+  }
+
+  refresh() {
+    this.employeeService.getEmployeeList();
+  }
 }
